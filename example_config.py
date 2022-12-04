@@ -1,0 +1,6 @@
+PLAYLIST = 'PLAYLIST ID'
+CID = 'CLIENT ID'
+SECRET = 'CLIENT SECRET'
+REDIRECT = 'http://localhost:8888/callback'
+SCOPE = 'user-read-currently-playing playlist-modify-private playlist-modify-public'
+USERNAME = 'USER NAME'

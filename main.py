@@ -15,13 +15,19 @@ def main():
     redirect = config.REDIRECT
     scope = config.SCOPE
     username = config.USERNAME
+    tracks_added = []
 
     def on_press(key):
         if (key == start and token):
-            # get current song
-            current_song = sp.current_user_playing_track()['item']['id']
-            # add it to playlist
-            sp.user_playlist_add_tracks(username, playlist_id=playlist, tracks=[current_song])
+            # get current song and add it to playlist
+            current_track = sp.current_user_playing_track()
+            if (current_track):
+                song_id = current_track['item']['id']
+                song_name = current_track['item']['name']
+                if (song_id not in tracks_added):
+                    sp.user_playlist_add_tracks(username, playlist_id=playlist, tracks=[song_id])
+                    tracks_added.append(song_id)
+                    print(song_name + " added.")
         if (key == stop):
             print("Application stopped.")
             return False
@@ -29,6 +35,7 @@ def main():
     token = util.prompt_for_user_token(username, scope, client_id=cid, client_secret=secret, redirect_uri=redirect)
     if token:
         sp = spotipy.Spotify(auth=token)
+        print("Application started.")
     with Listener(on_press=on_press) as listener:
         listener.join()
 
