@@ -8,8 +8,6 @@ def main():
 
     start = Key.delete
     stop = Key.page_down
-    skip = Key.ctrl_r
-    back = Key.alt_gr
     playlist = config.PLAYLIST
     cid = config.CID
     secret = config.SECRET
