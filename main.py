@@ -8,6 +8,8 @@ def main():
 
     start = Key.delete
     stop = Key.page_down
+    skip = Key.ctrl_r
+    back = Key.alt_gr
     playlist = config.PLAYLIST
     cid = config.CID
     secret = config.SECRET
@@ -27,7 +29,7 @@ def main():
                     sp.user_playlist_add_tracks(username, playlist_id=playlist, tracks=[song_id])
                     tracks_added.append(song_id)
                     print(song_name + " added.")
-        if (key == stop):
+        elif (key == stop):
             print("Application stopped.")
             return False
 
